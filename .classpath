@@ -6,6 +6,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/any_u/OneDrive/Documentos/Eclipse Java/gameMatch/src/lib/flatlaf-3.4.jar"/>
+	<classpathentry kind="lib" path="src/lib/flatlaf-3.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
