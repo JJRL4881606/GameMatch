@@ -11,11 +11,11 @@ import javax.swing.JScrollPane;
 import controllers.HomeController;
 
 @SuppressWarnings("serial")
-public class HomeWindow extends JFrame 
+public class MainWindow extends JFrame 
 {
-	private HomeView HomeView;
+	private MainView HomeView;
 
-    public HomeWindow() 
+    public MainWindow() 
     {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setTitle("GameMatch");
@@ -28,12 +28,12 @@ public class HomeWindow extends JFrame
 
         // Agregar icono
         Image icon = Toolkit.getDefaultToolkit().getImage(
-    	    getClass().getResource("/img/game-icon.png")
+    	    getClass().getResource("/img/icons/game-icon.png")
     	);
         setIconImage(icon);
          
         // Agregar el panel con scroll
-        HomeView = new HomeView();
+        HomeView = new MainView();
         new HomeController(HomeView);
         add(createViewScroll(HomeView), BorderLayout.CENTER);
         
@@ -48,7 +48,7 @@ public class HomeWindow extends JFrame
         return scroll;
     }
     
-    public HomeView getHomeView() {
+    public MainView getHomeView() {
         return HomeView;
     }
 }

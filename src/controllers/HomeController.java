@@ -1,12 +1,12 @@
 package controllers;
 
-import views.HomeView;
+import views.MainView;
 
 public class HomeController {
 
-    private HomeView view;
+    private MainView view;
 
-    public HomeController(HomeView view) {        
+    public HomeController(MainView view) {        
     	this.view = view;
     }
 }
