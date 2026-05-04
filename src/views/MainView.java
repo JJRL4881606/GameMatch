@@ -171,5 +171,8 @@ public class MainView extends JPanel{
         panel.setOpaque(false);
         return panel;
     }
-
+    
+    public void showView(String name) {
+        cardLayout.show(container, name);
+    }
 }

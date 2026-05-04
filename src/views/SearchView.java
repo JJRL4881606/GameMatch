@@ -14,4 +14,9 @@ public class SearchView extends JPanel{
 	    setVisible(true);
 	}
 
+	public Object getSearchView() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

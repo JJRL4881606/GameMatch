@@ -15,29 +15,10 @@ public class ButtonFactory {
                 new ImageIcon(ButtonFactory.class.getResource(iconPath))
         );
 
-        btn.setBackground(UIColors.BUTTON_BIG);
+        btn.setBackground(UIColors.BUTTON);
         btn.setToolTipText(tooltip);
         btn.setFont(AppFont.big());
-        btn.setForeground(UIColors.BUTTON_BIG_TEXT);
-        btn.setFocusPainted(false);
-
-        return btn;
-    }
-    
-    public static RoundedButton createNormalButton(
-            String text,
-            String iconPath,
-            String tooltip
-    ) {
-        RoundedButton btn = new RoundedButton(
-                text,
-                new ImageIcon(ButtonFactory.class.getResource(iconPath))
-        );
-
-        btn.setBackground(UIColors.BUTTON_NORMAL);
-        btn.setToolTipText(tooltip);
-        btn.setFont(AppFont.normal());
-        btn.setForeground(UIColors.BUTTON_NORMAL_TEXT);
+        btn.setForeground(UIColors.BUTTON_TEXT);
         btn.setFocusPainted(false);
 
         return btn;
