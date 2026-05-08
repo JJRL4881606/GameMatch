@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "name": "Minecraft",
+    "genre": "Sandbox",
+    "plataform": "PC",
+    "imagePath": "/assets/img/games/Minecraft.png",
+    "featured": true
+  },
+  {
+    "id": 2,
+    "name": "Grand Theft Auto V",
+    "genre": "Action",
+    "plataform": "PlayStation",
+    "imagePath": "/assets/img/games/GTA5.jpg",
+    "featured": true
+  },
+  {
+    "id": 3,
+    "name": "Human Fall Flat",
+    "genre": "Ragdoll",
+    "plataform": "PC",
+    "imagePath": "/assets/img/games/Human Fall Flat.png",
+    "featured": true
+  },
+  {
+    "id": 4,
+    "name": "Inside",
+    "genre": "Platformer",
+    "plataform": "PC",
+    "imagePath": "/assets/img/games/Inside.png",
+    "featured": true
+  }
+]

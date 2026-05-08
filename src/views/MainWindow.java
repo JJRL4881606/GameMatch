@@ -28,14 +28,14 @@ public class MainWindow extends JFrame
 
         // Agregar icono
         Image icon = Toolkit.getDefaultToolkit().getImage(
-    	    getClass().getResource("/img/icons/game-icon.png")
+    	    getClass().getResource("/assets/img/icons/game-icon.png")
     	);
         setIconImage(icon);
          
         // Agregar el panel con scroll
         HomeView = new MainView();
-        new HomeController(HomeView);
         add(createViewScroll(HomeView), BorderLayout.CENTER);
+        new HomeController(HomeView);
         
         this.setVisible(true);
     }

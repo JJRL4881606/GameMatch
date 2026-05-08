@@ -3,6 +3,8 @@ package views;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -49,8 +51,7 @@ public class MainView extends JPanel{
 	    setVisible(true);
 	}
 
-    public void initializeComponents() 
-    {	    
+    public void initializeComponents() {	    
         add(headerSection(), BorderLayout.NORTH);
         add(content(), BorderLayout.CENTER);
         add(inferiorSection(), BorderLayout.SOUTH);
@@ -74,7 +75,7 @@ public class MainView extends JPanel{
         JPanel panel = createTransparentPanel();
         panel.setLayout(new FlowLayout(FlowLayout.CENTER));
 
-        ImageIcon icon = new ImageIcon(getClass().getResource("/img/logos/GameMatch.png"));
+        ImageIcon icon = new ImageIcon(getClass().getResource("/assets/img/logos/GameMatch.png"));
         Image img = icon.getImage().getScaledInstance(400, 90, Image.SCALE_SMOOTH);
         JLabel logo = new JLabel(new ImageIcon(img));
 
@@ -142,11 +143,22 @@ public class MainView extends JPanel{
 
     private void createViews() {
         cardLayout = new CardLayout();
-        container = new JPanel(cardLayout);
-                
+
+        container = new JPanel(cardLayout) {
+            @Override
+            public Dimension getPreferredSize() {
+                for (Component c : getComponents()) {
+                    if (c.isVisible()) {
+                        return c.getPreferredSize();
+                    }
+                }
+                return super.getPreferredSize();
+            }
+        };
+
         homePanel = new HomeView();
         searchPanel = new SearchView();
-        
+
         container.add(homePanel, HOME);
         container.add(searchPanel, SEARCH);
     }

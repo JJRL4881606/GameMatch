@@ -1,7 +1,12 @@
 package views;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -12,7 +17,10 @@ import javax.swing.JTextField;
 
 import components.RoundedButton;
 import components.RoundedImageOverlayPanel;
+import components.RoundedImagePanel;
 import components.RoundedPanel;
+import models.Game;
+import utils.AppFont;
 import utils.ButtonFactory;
 import utils.FormUtils;
 import utils.UIColors;
@@ -21,9 +29,13 @@ import utils.VisualUtils;
 @SuppressWarnings("serial")
 public class HomeView extends JPanel{
 	
-	JTextField txtSearch;
-	JLabel lblSearchError;
-	RoundedButton btnSearch;
+	private JTextField txtSearch;
+	private JLabel lblSearchError;
+	private RoundedButton btnSearch;
+	
+	private JPanel gamesContainer;
+	private int sectionWidth = 1100; 
+
 
 	public HomeView() {
 	    this.setBackground(Color.WHITE);
@@ -33,57 +45,42 @@ public class HomeView extends JPanel{
 	}
 	
 	public void initializeComponents() {
-		add(createSearchHero());
+		add(createSearchSection());
 		
 	    add(Box.createRigidArea(new Dimension(0, 60)));
 	    add(VisualUtils.createDivider()); 
 	    add(Box.createRigidArea(new Dimension(0, 20)));
+	    
+	    add(wrapSection(createFeaturedGamesSection()));
 	}
 	
-	public JPanel createSearchHero() {
-
-	    JPanel container = new JPanel();
-	    container.setLayout(null);
-	    container.setPreferredSize(new Dimension(1400, 300));
+	public JPanel createSearchSection() {
+	    JPanel container = new JPanel(new BorderLayout());
+	    container.setPreferredSize(new Dimension(0, 300));
 	    container.setMaximumSize(new Dimension(Integer.MAX_VALUE, 300));
-	    container.setOpaque(false);
 
-	    //BACKGROUND
 	    RoundedImageOverlayPanel bg = new RoundedImageOverlayPanel(
-	            "/img/img/search-bg.png",
-	            1400,
-	            300,
+	            "/assets/img/search/search-bg.png",
 	            0,
-	            new Color(0, 0, 0, 120) // overlay oscuro
+	            new Color(0, 0, 0, 120)
 	    );
 
-	    bg.setBounds(0, 0, 1400, 300);
+	    bg.setLayout(new BorderLayout());
 
-	    // SEARCHBAR
 	    JPanel searchBar = createSearchBar();
-	    
-	    int barWidth = 900;
-	    int barHeight = 120;
+	    searchBar.setPreferredSize(new Dimension(900, 120));
 
-	    searchBar.setBounds(
-	            (1400 - barWidth) / 2, // centrar horizontal
-	            (300 - barHeight) / 2, // centrar vertical
-	            barWidth,
-	            barHeight
-	    );
+	    JPanel centerWrapper = new JPanel(new GridBagLayout());
+	    centerWrapper.setOpaque(false);
+	    centerWrapper.add(searchBar);
 
-	    // ORDEN DE CAPAS
-	    container.add(bg);
-	    container.add(searchBar);
-
-	    container.setComponentZOrder(searchBar, 0);
-	    container.setComponentZOrder(bg, 1);
+	    bg.add(centerWrapper, BorderLayout.CENTER);
+	    container.add(bg, BorderLayout.CENTER);
 
 	    return container;
 	}
 	
     public JPanel createSearchBar() {
-    	
 	    JPanel searchBar = new RoundedPanel(30);
 	    searchBar.setLayout(new BoxLayout(searchBar, BoxLayout.X_AXIS));
 	    searchBar.setBackground(UIColors.CARD);
@@ -103,16 +100,114 @@ public class HomeView extends JPanel{
 	    
 	    btnSearch = ButtonFactory.createBigButton(
 	            "Buscar",
-	            "/img/btn-icons/button-search-icon.png",
+	            "/assets/img/btn-icons/button-search-icon.png",
 	            "Haz click para buscar"
 	    );
 	    searchBar.add(Box.createRigidArea(new Dimension(15, 0)));
 	    searchBar.add(btnSearch);	
 	    searchBar.add(Box.createRigidArea(new Dimension(0, 10)));
-	    
 	    searchBar.add(Box.createHorizontalGlue());
 
 		return searchBar;
+    }
+    
+    public JPanel createFeaturedGamesSection() {
+        JPanel gamesPanel = new JPanel();
+        gamesPanel.setLayout(new BoxLayout(gamesPanel, BoxLayout.Y_AXIS));
+        gamesPanel.setOpaque(false);
+        
+        // HEADER SECTION
+        JPanel headerPanel = new JPanel();
+        headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.Y_AXIS));
+        headerPanel.setOpaque(false);
+
+        JLabel titleLabel = new JLabel("Juegos destacados");
+        titleLabel.setFont(AppFont.title());
+        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        headerPanel.add(titleLabel);
+        headerPanel.add(Box.createRigidArea(new Dimension(0, 8)));
+        
+        // contenedor horizontal de habitaciones
+        gamesContainer = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 20));
+        gamesContainer.setOpaque(false);
+        gamesContainer.setPreferredSize(new Dimension(sectionWidth, 400));
+        
+        gamesPanel.add(headerPanel);
+        gamesPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+        gamesPanel.add(gamesContainer);
+        gamesPanel.add(Box.createRigidArea(new Dimension(0, 5)));
+
+		return gamesPanel;
+    }
+    
+    public void setGames(List<Game> games) {
+        gamesContainer.removeAll();
+
+        for (Game game : games) {
+        	gamesContainer.add(createGameCard(game));
+        }
+
+        gamesContainer.revalidate();
+        gamesContainer.repaint();
+        
+        this.revalidate();
+        this.repaint();
+    }
+    
+    private JPanel wrapSection(JPanel section) {
+        JPanel wrapper = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 30));
+        wrapper.setOpaque(false);
+        wrapper.add(section);
+        return wrapper;
+    }
+    
+    private JPanel createGameCard(Game game) {
+
+        JPanel gameCard = new RoundedPanel(25);
+        gameCard.setLayout(new BoxLayout(gameCard, BoxLayout.Y_AXIS));
+        gameCard.setBackground(UIColors.CARD);
+        gameCard.setPreferredSize(new Dimension(250, 380));
+        gameCard.setMaximumSize(new Dimension(250, 380));
+        gameCard.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+
+        // imagen
+        RoundedImagePanel imagePanel = new RoundedImagePanel(game.getImagePath(), 170, 250, 20);
+        imagePanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+    	
+        JPanel titlePanel = new JPanel();
+        titlePanel.setLayout(new BoxLayout(titlePanel, BoxLayout.Y_AXIS));
+        titlePanel.setOpaque(false);
+
+        JLabel nameLabel = new JLabel(game.getName());
+        nameLabel.setFont(AppFont.subtitle());
+        nameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
+        titlePanel.add(nameLabel);
+        titlePanel.add(Box.createRigidArea(new Dimension(0, 8)));
+
+        // acción
+        JPanel actionPanel = new JPanel();
+        actionPanel.setOpaque(false);
+        actionPanel.setLayout(new BoxLayout(actionPanel, BoxLayout.Y_AXIS));
+
+        RoundedButton btnGameInfo = ButtonFactory.createBigButton(
+                "Ver recomendaciones",
+                "/assets/img/btn-icons/button-search-icon.png",
+                "Ver recomendaciones"
+        );
+        btnGameInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        actionPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        actionPanel.add(btnGameInfo);
+        
+        gameCard.add(imagePanel);
+        gameCard.add(Box.createVerticalGlue());
+        gameCard.add(titlePanel);
+        gameCard.add(Box.createVerticalGlue());
+        gameCard.add(actionPanel);
+
+        return gameCard;
     }
     
 	public void clearErrors() {
