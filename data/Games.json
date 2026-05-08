@@ -2,32 +2,36 @@
   {
     "id": 1,
     "name": "Minecraft",
-    "genre": "Sandbox",
-    "plataform": "PC",
+	"genres": ["Sandbox", "Survival"],
+	"modes": ["Singleplayer", "Multiplayer"],
+    "platforms": ["PC", "Xbox"],
     "imagePath": "/assets/img/games/Minecraft.png",
     "featured": true
   },
   {
     "id": 2,
     "name": "Grand Theft Auto V",
-    "genre": "Action",
-    "plataform": "PlayStation",
+	"genres": ["Action", "Shooter"],
+	"modes": ["Singleplayer", "Multiplayer"],
+    "platforms": ["PC", "PlayStation"],
     "imagePath": "/assets/img/games/GTA5.jpg",
     "featured": true
   },
   {
     "id": 3,
     "name": "Human Fall Flat",
-    "genre": "Ragdoll",
-    "plataform": "PC",
+	"genres": ["Sandbox", "Ragdoll", "Multiplayer"],
+	"modes": ["Singleplayer", "Multiplayer"],
+    "platforms": ["PC", "Xbox", "PlayStation"],
     "imagePath": "/assets/img/games/Human Fall Flat.png",
     "featured": true
   },
   {
     "id": 4,
     "name": "Inside",
-    "genre": "Platformer",
-    "plataform": "PC",
+	"genres": ["Platformer", "Scroller"],
+	"modes": ["Singleplayer"],
+	"platforms": ["PC", "Xbox", "PlayStation"],
     "imagePath": "/assets/img/games/Inside.png",
     "featured": true
   }

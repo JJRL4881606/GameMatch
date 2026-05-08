@@ -36,7 +36,6 @@ public class HomeView extends JPanel{
 	private JPanel gamesContainer;
 	private int sectionWidth = 1100; 
 
-
 	public HomeView() {
 	    this.setBackground(Color.WHITE);
 	    this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -96,7 +95,7 @@ public class HomeView extends JPanel{
 	    lblSearchError = FormUtils.createErrorLabel();
 	    txtSearch.setBackground(new Color(245,245,245));
 	    searchBar.add(Box.createRigidArea(new Dimension(15, 0)));
-	    searchBar.add(FormUtils.createField("Juego", txtSearch, lblSearchError, "Busca un juego aquí!", 400));
+	    searchBar.add(FormUtils.createField(null, txtSearch, lblSearchError, "Busca un juego aquí!", 400));
 	    
 	    btnSearch = ButtonFactory.createBigButton(
 	            "Buscar",
@@ -192,7 +191,7 @@ public class HomeView extends JPanel{
         actionPanel.setLayout(new BoxLayout(actionPanel, BoxLayout.Y_AXIS));
 
         RoundedButton btnGameInfo = ButtonFactory.createBigButton(
-                "Ver recomendaciones",
+                "Recomendaciones",
                 "/assets/img/btn-icons/button-search-icon.png",
                 "Ver recomendaciones"
         );

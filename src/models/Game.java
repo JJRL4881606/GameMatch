@@ -1,21 +1,25 @@
 package models;
 
+import java.util.List;
+
 public class Game {
     private int id;
     private String name;
-    private String genre;
-    private String plataform;
+    private List<String> genres;
+    private List<String> modes;
+    private List<String> platforms;
     private String imagePath;
 	private boolean featured;
 	
 	public Game() {
 	}
 
-    public Game(int id, String name, String genre, String plataform, String imagePath, boolean featured) {
+    public Game(int id, String name, List<String> genres, List<String> modes, List<String> platforms, String imagePath, boolean featured) {
         this.id = id;
         this.name = name;
-        this.genre = genre;
-        this.plataform = plataform;
+        this.genres = genres;
+        this.modes = modes;
+        this.platforms = platforms;
         this.imagePath = imagePath;
         this.featured = featured;
     }
@@ -28,12 +32,16 @@ public class Game {
         return name;
     }
 
-    public String getGenre() {
-        return genre;
+    public List<String> getGenres() {
+        return genres;
+    }
+    
+    public List<String> getModes() {
+        return modes;
     }
 
-    public String getPlataform() {
-        return plataform;
+    public List<String> getPlatforms() {
+        return platforms;
     }
     
     public String getImagePath() {
@@ -46,6 +54,9 @@ public class Game {
 
     @Override
     public String toString() {
-        return name + " (" + genre + " - " + plataform + ")";
+        return name
+        		+ " (" + genres + ")"
+        		+ " (" + modes + ")"
+				+ " (" + platforms + ")";
     }
 }

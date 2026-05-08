@@ -76,7 +76,6 @@ public class GameRepository {
                 break;
             }
         }
-
         updateAll(games);
     }
 }

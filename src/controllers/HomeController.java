@@ -49,7 +49,7 @@ public class HomeController {
         String search = view.getSearch();
 
         if (search.isEmpty()) {
-            view.setSearchError("El juego es obligatorio");
+            view.setSearchError("Ingresa un juego");
             return false;
 
         } else if (!Validator.isValidGame(search)) {
