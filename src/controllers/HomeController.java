@@ -3,6 +3,7 @@ package controllers;
 import java.io.IOException;
 import java.util.List;
 
+import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -25,7 +26,28 @@ public class HomeController {
         this.repository = new GameRepository();
 
         loadGames();
-        addListeners();
+        initListeners();
+    }
+    
+    private void initListeners() {
+
+    	view.getBtnSearch().addActionListener(e -> {
+    	    if (validateSearch()) {
+    	        handleSearch();
+    	    }
+    	});
+    	
+        view.getTxtSearch().getDocument().addDocumentListener(new DocumentListener() {
+            public void insertUpdate(DocumentEvent e) { validateSearch(); }
+            public void removeUpdate(DocumentEvent e) { validateSearch(); }
+            public void changedUpdate(DocumentEvent e) { validateSearch(); }
+        });
+
+        FormUtils.addFocusEffect(
+                view.getTxtSearch(),
+                view.getLblEmailError()
+        );
+        
     }
 
     private void loadGames() {
@@ -36,13 +58,26 @@ public class HomeController {
                     .filter(Game::getFeatured)
                     .toList();
 
-            javax.swing.SwingUtilities.invokeLater(() -> {
+            SwingUtilities.invokeLater(() -> {
                 view.setGames(featured);
             });
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    public void handleSearch() {
+    	List<Game> results;
+		try {
+			results = repository.search(view.getSearch());
+	    	mainView.searchPanel.setGames(results);
+	    	mainView.searchPanel.setSearchText(view.getSearch());
+	    	mainView.menuHome.setEnabled(true);
+	    	mainView.showView(MainView.SEARCH);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
     
     public boolean validateSearch() {
@@ -53,36 +88,11 @@ public class HomeController {
             return false;
 
         } else if (!Validator.isValidGame(search)) {
-            view.setSearchError("Solo se permiten letras");
+            view.setSearchError("Caracteres no permitidos");
             return false;
         }
 
         view.clearSearchError();
         return true;
-    }
-
-    private void addListeners() {
-
-        view.getBtnSearch().addActionListener(e -> {
-
-            if (validateSearch()) {
-                mainView.showView(MainView.SEARCH);
-            }
-        });
-
-        view.getTxtSearch().getDocument().addDocumentListener(new DocumentListener() {
-            public void insertUpdate(DocumentEvent e) { validateSearch(); }
-            public void removeUpdate(DocumentEvent e) { validateSearch(); }
-            public void changedUpdate(DocumentEvent e) { validateSearch(); }
-        });
-
-        mainView.btnHome.addActionListener(e -> {
-            mainView.showView(MainView.HOME);
-        });
-
-        FormUtils.addFocusEffect(
-                view.getTxtSearch(),
-                view.getLblEmailError()
-        );
     }
 }

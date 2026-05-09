@@ -58,6 +58,23 @@ public class GameRepository {
         }
         return null;
     }
+    
+    public List<Game> search(String text) throws IOException {
+
+        List<Game> results = new ArrayList<>();
+
+        for (Game game : getGames()) {
+
+            if (game.getName()
+                    .toLowerCase()
+                    .contains(text.toLowerCase())) {
+
+                results.add(game);
+            }
+        }
+
+        return results;
+    }
 
     // Eliminar por ID
     public void deleteById(int id) throws IOException {

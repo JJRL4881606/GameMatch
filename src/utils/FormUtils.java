@@ -21,15 +21,15 @@ import components.RoundedTextField;
 
 public class FormUtils {
 
-    public static JPanel createField(String labelText, JComponent field, JLabel errorLabel, String placeholder, int width) {
+    public static JPanel createField(String labelText, JComponent field, JLabel errorLabel, String placeholder, int width, int height) {
 
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setOpaque(false);
 
-        panel.setPreferredSize(new Dimension(width, 90));
-        panel.setMaximumSize(new Dimension(width, 90));
-        panel.setMinimumSize(new Dimension(width, 90));
+        panel.setPreferredSize(new Dimension(width, height));
+        panel.setMaximumSize(new Dimension(width, height));
+        panel.setMinimumSize(new Dimension(width, height));
 
         if (labelText != null) {
             JLabel label = new JLabel(labelText);
@@ -38,9 +38,9 @@ public class FormUtils {
         }
 
         field.setAlignmentX(Component.CENTER_ALIGNMENT);
-        field.setPreferredSize(new Dimension(width, 45));
-        field.setMaximumSize(new Dimension(width, 45));
-        field.setMinimumSize(new Dimension(width, 45));
+        field.setPreferredSize(new Dimension(width, height));
+        field.setMaximumSize(new Dimension(width, height));
+        field.setMinimumSize(new Dimension(width, height));
 
         if (field instanceof JTextField) {
             ((JTextField) field).putClientProperty(

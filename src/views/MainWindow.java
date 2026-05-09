@@ -9,17 +9,18 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import controllers.HomeController;
+import controllers.MainController;
 
 @SuppressWarnings("serial")
 public class MainWindow extends JFrame 
 {
-	private MainView HomeView;
+	private MainView mainView;
+	private JScrollPane scroll;
 
     public MainWindow() 
     {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setTitle("GameMatch");
-        this.setResizable(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         JPanel background = new JPanel();
@@ -33,9 +34,12 @@ public class MainWindow extends JFrame
         setIconImage(icon);
          
         // Agregar el panel con scroll
-        HomeView = new MainView();
-        add(createViewScroll(HomeView), BorderLayout.CENTER);
-        new HomeController(HomeView);
+        mainView = new MainView();
+        scroll = createViewScroll(mainView);
+
+        background.add(scroll, BorderLayout.CENTER);
+        new MainController(mainView, this);
+        new HomeController(mainView);
         
         this.setVisible(true);
     }
@@ -48,7 +52,12 @@ public class MainWindow extends JFrame
         return scroll;
     }
     
-    public MainView getHomeView() {
-        return HomeView;
+    public MainView getMainView() {
+        return mainView;
     }
+    
+	public JScrollPane getScroll() {
+	    return scroll;
+	}
+
 }

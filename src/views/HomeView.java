@@ -15,9 +15,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import components.GameCard;
 import components.RoundedButton;
 import components.RoundedImageOverlayPanel;
-import components.RoundedImagePanel;
 import components.RoundedPanel;
 import models.Game;
 import utils.AppFont;
@@ -95,13 +95,16 @@ public class HomeView extends JPanel{
 	    lblSearchError = FormUtils.createErrorLabel();
 	    txtSearch.setBackground(new Color(245,245,245));
 	    searchBar.add(Box.createRigidArea(new Dimension(15, 0)));
-	    searchBar.add(FormUtils.createField(null, txtSearch, lblSearchError, "Busca un juego aquí!", 400));
+	    searchBar.add(FormUtils.createField(null, txtSearch, lblSearchError, "Busca un juego aquí!", 400, 60));
 	    
-	    btnSearch = ButtonFactory.createBigButton(
-	            "Buscar",
-	            "/assets/img/btn-icons/button-search-icon.png",
-	            "Haz click para buscar"
-	    );
+	    btnSearch = ButtonFactory.createButton(
+	    	    "Buscar",
+	    	    "/assets/img/btn-icons/button-search-icon.png",
+	    	    "Haz click para buscar",
+	    	    220,
+	    	    55
+	    	);
+	    
 	    searchBar.add(Box.createRigidArea(new Dimension(15, 0)));
 	    searchBar.add(btnSearch);	
 	    searchBar.add(Box.createRigidArea(new Dimension(0, 10)));
@@ -144,7 +147,7 @@ public class HomeView extends JPanel{
         gamesContainer.removeAll();
 
         for (Game game : games) {
-        	gamesContainer.add(createGameCard(game));
+        	gamesContainer.add(new GameCard(game));
         }
 
         gamesContainer.revalidate();
@@ -159,54 +162,6 @@ public class HomeView extends JPanel{
         wrapper.setOpaque(false);
         wrapper.add(section);
         return wrapper;
-    }
-    
-    private JPanel createGameCard(Game game) {
-
-        JPanel gameCard = new RoundedPanel(25);
-        gameCard.setLayout(new BoxLayout(gameCard, BoxLayout.Y_AXIS));
-        gameCard.setBackground(UIColors.CARD);
-        gameCard.setPreferredSize(new Dimension(250, 380));
-        gameCard.setMaximumSize(new Dimension(250, 380));
-        gameCard.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
-
-        // imagen
-        RoundedImagePanel imagePanel = new RoundedImagePanel(game.getImagePath(), 170, 250, 20);
-        imagePanel.setAlignmentX(Component.CENTER_ALIGNMENT);
-    	
-        JPanel titlePanel = new JPanel();
-        titlePanel.setLayout(new BoxLayout(titlePanel, BoxLayout.Y_AXIS));
-        titlePanel.setOpaque(false);
-
-        JLabel nameLabel = new JLabel(game.getName());
-        nameLabel.setFont(AppFont.subtitle());
-        nameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        
-        titlePanel.add(nameLabel);
-        titlePanel.add(Box.createRigidArea(new Dimension(0, 8)));
-
-        // acción
-        JPanel actionPanel = new JPanel();
-        actionPanel.setOpaque(false);
-        actionPanel.setLayout(new BoxLayout(actionPanel, BoxLayout.Y_AXIS));
-
-        RoundedButton btnGameInfo = ButtonFactory.createBigButton(
-                "Recomendaciones",
-                "/assets/img/btn-icons/button-search-icon.png",
-                "Ver recomendaciones"
-        );
-        btnGameInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-        actionPanel.add(Box.createRigidArea(new Dimension(0, 10)));
-        actionPanel.add(btnGameInfo);
-        
-        gameCard.add(imagePanel);
-        gameCard.add(Box.createVerticalGlue());
-        gameCard.add(titlePanel);
-        gameCard.add(Box.createVerticalGlue());
-        gameCard.add(actionPanel);
-
-        return gameCard;
     }
     
 	public void clearErrors() {

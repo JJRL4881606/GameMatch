@@ -13,14 +13,12 @@ import java.awt.event.KeyEvent;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
-import components.UnderlineMenu;
+import components.UnderlineMenuItem;
 import utils.AppFont;
 import utils.UIColors;
 
@@ -29,9 +27,12 @@ public class MainView extends JPanel{
 		
 	public static final String HOME = "HOME";
 	public static final String SEARCH = "SEARCH";
+	public static final String GAMES = "GAMES";
+	public static final String CATEGORIES = "CATEGORIES";
 	
-	public JMenuItem btnHome;
-	public JMenuItem btnSearch;
+	public UnderlineMenuItem menuHome;
+	public UnderlineMenuItem menuGames;
+	public UnderlineMenuItem menuCategories;
 	public HomeView homePanel;
 	public SearchView searchPanel;
 
@@ -107,25 +108,17 @@ public class MainView extends JPanel{
     	mb.setBackground(UIColors.HEADER);
     	
         // SISTEMA
-        JMenu sistema = new UnderlineMenu("Sistema");
-        sistema.setMnemonic(KeyEvent.VK_S);
-        mb.add(sistema);
-
-        btnHome = new JMenuItem("Inicio");
-        btnHome.setMnemonic(KeyEvent.VK_I);
-        sistema.add(btnHome);
+        menuHome = new UnderlineMenuItem("Inicio");
+        menuHome.setMnemonic(KeyEvent.VK_I);
+        mb.add(menuHome);
         
-    	JMenu juegos = new UnderlineMenu("Juegos");
-    	juegos.setMnemonic(KeyEvent.VK_J);
-        mb.add(juegos);
+    	menuGames = new UnderlineMenuItem("Juegos");
+    	menuGames.setMnemonic(KeyEvent.VK_J);
+        mb.add(menuGames);
 
-        JMenu categorias = new UnderlineMenu("Categorías");
-        categorias.setMnemonic(KeyEvent.VK_C);
-        mb.add(categorias);
-
-        btnSearch = new UnderlineMenu("Buscar");
-        btnSearch.setMnemonic(KeyEvent.VK_B);
-        mb.add(btnSearch);
+        menuCategories = new UnderlineMenuItem("Categorías");
+        menuCategories.setMnemonic(KeyEvent.VK_C);
+        mb.add(menuCategories);
 
         return mb;
     }
