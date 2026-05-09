@@ -6,6 +6,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -32,9 +33,7 @@ public class HomeView extends JPanel{
 	private JTextField txtSearch;
 	private JLabel lblSearchError;
 	private RoundedButton btnSearch;
-	
 	private JPanel gamesContainer;
-	private int sectionWidth = 1100; 
 
 	public HomeView() {
 	    this.setBackground(Color.WHITE);
@@ -131,9 +130,8 @@ public class HomeView extends JPanel{
         headerPanel.add(Box.createRigidArea(new Dimension(0, 8)));
         
         // contenedor horizontal de habitaciones
-        gamesContainer = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 20));
+        gamesContainer = new JPanel(new GridLayout(0, 4, 20, 20));
         gamesContainer.setOpaque(false);
-        gamesContainer.setPreferredSize(new Dimension(sectionWidth, 400));
         
         gamesPanel.add(headerPanel);
         gamesPanel.add(Box.createRigidArea(new Dimension(0, 20)));
@@ -152,6 +150,8 @@ public class HomeView extends JPanel{
 
         gamesContainer.revalidate();
         gamesContainer.repaint();
+        
+        gamesContainer.setPreferredSize(gamesContainer.getLayout().preferredLayoutSize(gamesContainer));
         
         this.revalidate();
         this.repaint();

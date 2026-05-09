@@ -28,8 +28,8 @@ public class GameCard extends RoundedPanel {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(UIColors.CARD);
 
-        setPreferredSize(new Dimension(250, 380));
-        setMaximumSize(new Dimension(250, 380));
+        setPreferredSize(new Dimension(240, 380));
+        setMaximumSize(new Dimension(240, 380));
 
         setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
 

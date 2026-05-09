@@ -2,8 +2,8 @@
   {
     "id": 1,
     "name": "Minecraft",
-	"genres": ["Sandbox", "Survival"],
-	"modes": ["Singleplayer", "Multiplayer"],
+    "genres": ["Sandbox", "Survival"],
+    "modes": ["Singleplayer", "Multiplayer"],
     "platforms": ["PC", "Xbox"],
     "imagePath": "/assets/img/games/Minecraft.png",
     "featured": true
@@ -11,17 +11,17 @@
   {
     "id": 2,
     "name": "Grand Theft Auto V",
-	"genres": ["Action", "Shooter"],
-	"modes": ["Singleplayer", "Multiplayer"],
-    "platforms": ["PC", "PlayStation"],
+    "genres": ["Action", "Shooter"],
+    "modes": ["Singleplayer", "Multiplayer"],
+    "platforms": ["PC", "Xbox", "PlayStation"],
     "imagePath": "/assets/img/games/GTA5.jpg",
     "featured": true
   },
   {
     "id": 3,
     "name": "Human Fall Flat",
-	"genres": ["Sandbox", "Ragdoll", "Multiplayer"],
-	"modes": ["Singleplayer", "Multiplayer"],
+    "genres": ["Sandbox", "Ragdoll"],
+    "modes": ["Singleplayer", "Multiplayer"],
     "platforms": ["PC", "Xbox", "PlayStation"],
     "imagePath": "/assets/img/games/Human Fall Flat.png",
     "featured": true
@@ -29,10 +29,64 @@
   {
     "id": 4,
     "name": "Inside",
-	"genres": ["Platformer", "Scroller"],
-	"modes": ["Singleplayer"],
-	"platforms": ["PC", "Xbox", "PlayStation"],
+    "genres": ["Platformer", "Scroller"],
+    "modes": ["Singleplayer"],
+    "platforms": ["PC", "Xbox", "PlayStation"],
     "imagePath": "/assets/img/games/Inside.png",
+    "featured": true
+  },
+  {
+    "id": 5,
+    "name": "Fortnite",
+    "genres": ["Battle Royale", "Shooter", "Survival"],
+    "modes": ["Multiplayer"],
+    "platforms": ["PC", "Xbox", "PlayStation"],
+    "imagePath": "/assets/img/games/Fortnite.png",
+    "featured": true
+  },
+  {
+    "id": 6,
+    "name": "Forza Horizon 5",
+    "genres": ["Racing", "Open World"],
+    "modes": ["Singleplayer", "Multiplayer"],
+    "platforms": ["PC", "Xbox"],
+    "imagePath": "/assets/img/games/Forza Horizon 5.jpg",
+    "featured": true
+  },
+  {
+    "id": 7,
+    "name": "Hollow Knight",
+    "genres": ["Metroidvania", "Action", "Platformer"],
+    "modes": ["Singleplayer"],
+    "platforms": ["PC", "Xbox", "PlayStation", "Switch"],
+    "imagePath": "/assets/img/games/Hollow Knight.png",
+    "featured": true
+  },
+  {
+    "id": 8,
+    "name": "Stray",
+    "genres": ["Adventure", "Exploration"],
+    "modes": ["Singleplayer"],
+    "platforms": ["PC", "PlayStation", "Xbox"],
+    "imagePath": "/assets/img/games/Stray.png",
+    "featured": true
+  },
+  {
+    "id": 9,
+    "name": "Terraria",
+    "genres": ["Sandbox", "Survival", "Adventure"],
+    "modes": ["Singleplayer", "Multiplayer"],
+    "platforms": ["PC", "Xbox", "PlayStation", "Switch"],
+    "imagePath": "/assets/img/games/Terraria.png",
+    "featured": true
+  },
+  {
+    "id": 10,
+    "name": "Stardew Valley",
+    "genres": ["Simulation", "Farming", "RPG"],
+    "modes": ["Singleplayer", "Multiplayer"],
+    "platforms": ["PC", "Xbox", "PlayStation", "Switch"],
+    "imagePath": "/assets/img/games/Stardew Valley.png",
     "featured": true
   }
 ]
