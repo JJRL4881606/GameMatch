@@ -24,13 +24,9 @@ public class CategoryCard extends RoundedPanel {
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(UIColors.CARD);
-
-        setPreferredSize(new Dimension(250, 160));
-        setMaximumSize(new Dimension(250, 160));
-
-        setBorder(
-            BorderFactory.createEmptyBorder(20, 20, 20, 20)
-        );
+        setPreferredSize(new Dimension(240, 160));
+        setMaximumSize(new Dimension(240, 160));
+        setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         initializeComponents();
     }
@@ -45,7 +41,7 @@ public class CategoryCard extends RoundedPanel {
                 "/assets/img/btn-icons/button-search-icon.png",
                 "Ver juegos de esta categoría",
                 180,
-                45
+                55
         );
         btnViewGames.setAlignmentX(Component.CENTER_ALIGNMENT);
 

@@ -45,7 +45,7 @@ public class HomeController {
 
         FormUtils.addFocusEffect(
                 view.getTxtSearch(),
-                view.getLblEmailError()
+                view.getLblSearchError()
         );
         
         view.getTxtSearch().addActionListener(e -> {

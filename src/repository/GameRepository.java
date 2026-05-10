@@ -49,7 +49,6 @@ public class GameRepository {
         mapper.writeValue(file, games);
     }
 
-    // Buscar por ID
     public Game findById(int id) throws IOException {
         for (Game game : getGames()) {
             if (game.getId() == id) {
@@ -75,29 +74,43 @@ public class GameRepository {
     }
     
     public List<String> getCategories() throws IOException {
-        return getGames().stream()
-                .flatMap(game -> game.getGenres().stream())
-                .distinct()
-                .sorted()
-                .toList();
+        List<String> categories = new ArrayList<>();
+
+        for (Game game : getGames()) {
+            for (String genre : game.getGenres()) {
+                if (!categories.contains(genre)) {
+                    categories.add(genre);
+                }
+            }
+        }
+        categories.sort(String::compareTo);
+
+        return categories;
     }
     
     public List<Game> searchByCategory(String category) throws IOException {
-        return getGames().stream()
-                .filter(game ->
-                        game.getGenres().contains(category)
-                )
-                .toList();
-    }
+        List<Game> results = new ArrayList<>();
 
-    // Eliminar por ID
+        for (Game game : getGames()) {
+            if (game.getGenres().contains(category)) {
+                results.add(game);
+            }
+        }
+        return results;
+    }
+    
     public void deleteById(int id) throws IOException {
         List<Game> games = getGames();
-        games.removeIf(game -> game.getId() == id);
+
+        for (int i = 0; i < games.size(); i++) {
+            if (games.get(i).getId() == id) {
+                games.remove(i);
+                break;
+            }
+        }
         updateAll(games);
     }
-
-    // Actualizar por ID
+    
     public void updateById(int id, Game updatedGame) throws IOException {
         List<Game> games = getGames();
 

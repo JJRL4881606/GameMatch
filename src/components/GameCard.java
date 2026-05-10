@@ -53,7 +53,7 @@ public class GameCard extends RoundedPanel {
                 "Ver juego",
                 "/assets/img/btn-icons/button-search-icon.png",
                 "Ver información",
-                200,
+                180,
                 55
         );
 

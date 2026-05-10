@@ -150,7 +150,7 @@ public class HomeView extends JPanel{
 
         gamesContainer.revalidate();
         gamesContainer.repaint();
-        
+       
         gamesContainer.setPreferredSize(gamesContainer.getLayout().preferredLayoutSize(gamesContainer));
         
         this.revalidate();
@@ -163,11 +163,7 @@ public class HomeView extends JPanel{
         wrapper.add(section);
         return wrapper;
     }
-    
-	public void clearErrors() {
-		clearSearchError();
-	}
-	
+
 	public void clearSearchError(){
 	    FormUtils.clearError(lblSearchError, txtSearch);
 	}
@@ -185,7 +181,7 @@ public class HomeView extends JPanel{
 	    return txtSearch;
 	}
 	
-	public JLabel getLblEmailError() {
+	public JLabel getLblSearchError() {
 	    return lblSearchError;
 	}	
 	
