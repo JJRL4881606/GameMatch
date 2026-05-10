@@ -48,6 +48,9 @@ public class HomeController {
                 view.getLblEmailError()
         );
         
+        view.getTxtSearch().addActionListener(e -> {
+            view.getBtnSearch().doClick();
+        });
     }
 
     private void loadGames() {

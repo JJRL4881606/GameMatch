@@ -8,6 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import controllers.CategoriesController;
+import controllers.GamesController;
 import controllers.HomeController;
 import controllers.MainController;
 
@@ -17,8 +19,7 @@ public class MainWindow extends JFrame
 	private MainView mainView;
 	private JScrollPane scroll;
 
-    public MainWindow() 
-    {
+    public MainWindow() {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setTitle("GameMatch");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -40,6 +41,8 @@ public class MainWindow extends JFrame
         background.add(scroll, BorderLayout.CENTER);
         new MainController(mainView, this);
         new HomeController(mainView);
+        new GamesController(mainView);
+        new CategoriesController(mainView);
         
         this.setVisible(true);
     }
@@ -59,5 +62,4 @@ public class MainWindow extends JFrame
 	public JScrollPane getScroll() {
 	    return scroll;
 	}
-
 }

@@ -20,24 +20,19 @@ public class GameCard extends RoundedPanel {
     private Game game;
 
     public GameCard(Game game) {
-
         super(25);
-
         this.game = game;
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(UIColors.CARD);
-
         setPreferredSize(new Dimension(240, 380));
         setMaximumSize(new Dimension(240, 380));
-
         setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
 
         initializeComponents();
     }
 
     private void initializeComponents() {
-
         // Imagen
         RoundedImagePanel imagePanel =
                 new RoundedImagePanel(
@@ -46,12 +41,10 @@ public class GameCard extends RoundedPanel {
                         250,
                         20
                 );
-
         imagePanel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Nombre
         JLabel lblName = new JLabel(game.getName());
-
         lblName.setFont(AppFont.subtitle());
         lblName.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -68,13 +61,9 @@ public class GameCard extends RoundedPanel {
 
         // Agregar componentes
         add(imagePanel);
-
         add(Box.createVerticalGlue());
-
         add(lblName);
-
         add(Box.createRigidArea(new Dimension(0, 15)));
-
         add(btnViewGame);
     }
 

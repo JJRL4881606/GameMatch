@@ -12,17 +12,18 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.util.List;
 
+import components.CategoryCard;
 import components.GameCard;
 import models.Game;
 import utils.AppFont;
 
 @SuppressWarnings("serial")
-public class SearchView extends JPanel {
+public class CategoriesView extends JPanel {
 
     private JLabel lblResults;
-    private JPanel gamesContainer;
-
-    public SearchView() {
+    private JPanel categoriesContainer;
+    
+    public CategoriesView() {
         setBackground(Color.WHITE);
         setOpaque(true);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -47,45 +48,45 @@ public class SearchView extends JPanel {
         headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.Y_AXIS));
         headerPanel.setOpaque(false);
 
-        lblResults = new JLabel("Resultados");
+        lblResults = new JLabel("Categorías");
         lblResults.setFont(AppFont.title());
         lblResults.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         headerPanel.add(lblResults);
 
         // GRID
-        gamesContainer = new JPanel(new GridLayout(0, 4, 20, 20));
-        gamesContainer.setOpaque(false);
+        categoriesContainer = new JPanel(new GridLayout(0, 4, 20, 20));
+        categoriesContainer.setOpaque(false);
 
         section.add(headerPanel);
         section.add(Box.createRigidArea(new Dimension(0, 20)));
-        section.add(gamesContainer);
+        section.add(categoriesContainer);
         section.add(Box.createRigidArea(new Dimension(0, 20)));
 
         return section;
     }
 
     public void setGames(List<Game> games) {
-        gamesContainer.removeAll();
+    	categoriesContainer.removeAll();
 
         if (games.isEmpty()) {
             JLabel lblNoResults = new JLabel("Sin resultados");
             lblNoResults.setFont(AppFont.subtitle());
             lblNoResults.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-            gamesContainer.setLayout(new FlowLayout(FlowLayout.CENTER));
-            gamesContainer.add(lblNoResults);
+            categoriesContainer.setLayout(new FlowLayout(FlowLayout.CENTER));
+            categoriesContainer.add(lblNoResults);
         } else {
-            gamesContainer.setLayout(new GridLayout(0, 4, 20, 20));
+        	categoriesContainer.setLayout(new GridLayout(0, 4, 20, 20));
             for (Game game : games) {
-                gamesContainer.add(new GameCard(game));
+            	categoriesContainer.add(new GameCard(game));
             }
         }
 
-        gamesContainer.revalidate();
-        gamesContainer.repaint();
-        gamesContainer.setPreferredSize(
-            gamesContainer.getLayout().preferredLayoutSize(gamesContainer)
+        categoriesContainer.revalidate();
+        categoriesContainer.repaint();
+        categoriesContainer.setPreferredSize(
+        		categoriesContainer.getLayout().preferredLayoutSize(categoriesContainer)
         );
 
         this.revalidate();
@@ -100,5 +101,25 @@ public class SearchView extends JPanel {
 
     public void setSearchText(String text) {
         lblResults.setText("Resultados para: \"" + text + "\"");
+    }
+    
+    public void setGamesByCategories(List<String> categories) {
+
+        categoriesContainer.removeAll();
+
+        for (String category : categories) {
+            categoriesContainer.add(new CategoryCard(category));
+        }
+
+        categoriesContainer.revalidate();
+        categoriesContainer.repaint();
+
+        categoriesContainer.setPreferredSize(
+            categoriesContainer.getLayout()
+                .preferredLayoutSize(categoriesContainer)
+        );
+
+        revalidate();
+        repaint();
     }
 }

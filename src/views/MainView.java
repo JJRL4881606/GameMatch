@@ -35,9 +35,12 @@ public class MainView extends JPanel{
 	public UnderlineMenuItem menuCategories;
 	public HomeView homePanel;
 	public SearchView searchPanel;
+	public GamesView gamesPanel;
+	public CategoriesView categoriesPanel;
 
 	private CardLayout cardLayout;
 	private JPanel container;
+	
 
 	public MainView() {
 	    UIManager.put("Menu.borderPainted", false);
@@ -151,9 +154,13 @@ public class MainView extends JPanel{
 
         homePanel = new HomeView();
         searchPanel = new SearchView();
+        gamesPanel = new GamesView();
+        categoriesPanel = new CategoriesView();
 
         container.add(homePanel, HOME);
         container.add(searchPanel, SEARCH);
+        container.add(gamesPanel, GAMES);
+        container.add(categoriesPanel, CATEGORIES);
     }
         
     //INFERIOR

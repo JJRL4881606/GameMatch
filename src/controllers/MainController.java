@@ -43,6 +43,29 @@ public class MainController {
 
 		    resetScroll();
 		});
+		
+		view.menuGames.addActionListener(e -> {
+		    view.showView(MainView.GAMES);
+
+		    updateMenuState(MainView.GAMES);
+
+		    frame.revalidate();
+		    frame.repaint();
+
+		    resetScroll();
+		});
+		
+		view.menuCategories.addActionListener(e -> {
+		    view.showView(MainView.CATEGORIES);
+
+		    updateMenuState(MainView.CATEGORIES);
+
+		    frame.revalidate();
+		    frame.repaint();
+
+		    resetScroll();
+		});
+
 	}
 	
     private void handleClose() {
@@ -50,10 +73,12 @@ public class MainController {
         if (window != null) window.dispose();
     }
     
-	private void updateMenuState(String viewName) {
-		view.menuHome.setEnabled(!viewName.equals(MainView.HOME));
-	}
-	
+    private void updateMenuState(String viewName) {
+    	view.menuHome.setEnabled(!viewName.equals(MainView.HOME));
+    	view.menuGames.setEnabled(!viewName.equals(MainView.GAMES));
+    	view.menuCategories.setEnabled(!viewName.equals(MainView.CATEGORIES));
+    }
+    
 	private void resetScroll() {
 	    SwingUtilities.invokeLater(() -> {
 	        frame.getScroll().getViewport().setViewPosition(new Point(0, 0));

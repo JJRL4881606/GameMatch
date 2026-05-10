@@ -62,18 +62,32 @@ public class GameRepository {
     public List<Game> search(String text) throws IOException {
 
         List<Game> results = new ArrayList<>();
-
+        
         for (Game game : getGames()) {
-
             if (game.getName()
                     .toLowerCase()
                     .contains(text.toLowerCase())) {
-
                 results.add(game);
             }
         }
-
+        
         return results;
+    }
+    
+    public List<String> getCategories() throws IOException {
+        return getGames().stream()
+                .flatMap(game -> game.getGenres().stream())
+                .distinct()
+                .sorted()
+                .toList();
+    }
+    
+    public List<Game> searchByCategory(String category) throws IOException {
+        return getGames().stream()
+                .filter(game ->
+                        game.getGenres().contains(category)
+                )
+                .toList();
     }
 
     // Eliminar por ID

@@ -78,7 +78,7 @@
     "modes": ["Singleplayer", "Multiplayer"],
     "platforms": ["PC", "Xbox", "PlayStation", "Switch"],
     "imagePath": "/assets/img/games/Terraria.png",
-    "featured": true
+    "featured": false
   },
   {
     "id": 10,
@@ -87,6 +87,6 @@
     "modes": ["Singleplayer", "Multiplayer"],
     "platforms": ["PC", "Xbox", "PlayStation", "Switch"],
     "imagePath": "/assets/img/games/Stardew Valley.png",
-    "featured": true
+    "featured": false
   }
 ]

@@ -17,12 +17,12 @@ import models.Game;
 import utils.AppFont;
 
 @SuppressWarnings("serial")
-public class SearchView extends JPanel {
+public class GamesView extends JPanel {
 
     private JLabel lblResults;
     private JPanel gamesContainer;
 
-    public SearchView() {
+    public GamesView() {
         setBackground(Color.WHITE);
         setOpaque(true);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -47,7 +47,7 @@ public class SearchView extends JPanel {
         headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.Y_AXIS));
         headerPanel.setOpaque(false);
 
-        lblResults = new JLabel("Resultados");
+        lblResults = new JLabel("Todos los juegos");
         lblResults.setFont(AppFont.title());
         lblResults.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -96,9 +96,5 @@ public class SearchView extends JPanel {
         wrapper.setOpaque(false);
         wrapper.add(section);
         return wrapper;
-    }
-
-    public void setSearchText(String text) {
-        lblResults.setText("Resultados para: \"" + text + "\"");
     }
 }
